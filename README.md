@@ -1,4 +1,4 @@
-# eduroam FLR (Federation Level Radius) Docker Image
+# eduroam IdP (Identity Provider) & SP (Service Provider) Docker Image
 
 FreeRADIUS is an open source RADIUS server: http://freeradius.org
 
