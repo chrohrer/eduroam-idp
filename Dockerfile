@@ -5,8 +5,10 @@ LABEL maintainer="chris.rohrer@ubuntunet.net"
 WORKDIR /radius
 
 RUN apk update && apk upgrade && \
-    apk add --update freeradius-eap && \
+    apk add --update openssl freeradius-eap && \
     rm /var/cache/apk/*
+
+RUN /etc/raddb/certs/bootstrap
 
 COPY Radius/mods-config/attr_filter/pre-proxy /etc/raddb/mods-config/attr_filter/pre-proxy
 COPY Radius/mods-enabled/f_ticks /etc/raddb/mods-enabled/f_ticks
