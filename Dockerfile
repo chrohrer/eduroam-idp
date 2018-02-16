@@ -5,7 +5,7 @@ LABEL maintainer="chris.rohrer@ubuntunet.net"
 WORKDIR /radius
 
 RUN apk update && apk upgrade && \
-    apk add --update openssl freeradius-eap && \
+    apk add --update openssl freeradius-eap freeradius-ldap && \
     rm /var/cache/apk/*
 
 RUN /etc/raddb/certs/bootstrap && \
