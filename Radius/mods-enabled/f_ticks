@@ -6,7 +6,7 @@
 ##  Per https://wiki.geant.org/display/H2eduroam/freeradius-sp
 ##
 linelog f_ticks {
-  filename = syslog
+  filename = ${logdir}/fticks
   #syslog_facility = local0
   #syslog_severity = info
   format = ""
