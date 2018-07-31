@@ -1,23 +1,19 @@
-FROM chrohrer/freeradius:latest
+FROM chrohrer/freeradius:0.4
 
 LABEL maintainer="chris.rohrer@ubuntunet.net"
 
 WORKDIR /radius
 
 RUN apk update && apk upgrade && \
-    apk add --update openssl freeradius-eap freeradius-ldap && \
+    apk add --update openssl freeradius-eap freeradius-ldap freeradius-postgresql freeradius-mysql make && \
     rm /var/cache/apk/*
 
 RUN /etc/raddb/certs/bootstrap && \
     chmod -R +r /etc/raddb/certs
 
-# COPY eduroam /etc/raddb/sites-enabled/eduroam
-# COPY eduroam-inner-tunnel /etc/raddb/sites-enabled/eduroam-inner-tunnel
-
 COPY Radius/radiusd.conf /etc/raddb/radiusd.conf
 COPY Radius/mods-config/attr_filter/pre-proxy /etc/raddb/mods-config/attr_filter/pre-proxy
 COPY Radius/mods-enabled/f_ticks /etc/raddb/mods-enabled/f_ticks
-COPY Radius/mods-enabled/cui /etc/raddb/mods-enabled/cui
 
 EXPOSE 1812/udp 1813/udp
 
