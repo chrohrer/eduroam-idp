@@ -1,5 +1,7 @@
-# ARG radiusd_options
-# ARG radiusd_logfile
+ARG RADIUSD_OPTIONS=sfxxl
+ARG RADIUSD_LOGFILE=stdout
+ENV RADIUSD_OPTIONS ${RADIUSD_OPTIONS}
+ENV RADIUSD_LOGFILE ${RADIUSD_LOGFILE}
 
 FROM chrohrer/freeradius:0.4
 
@@ -20,4 +22,4 @@ COPY Radius/mods-enabled/f_ticks /etc/raddb/mods-enabled/f_ticks
 
 EXPOSE 1812/udp 1813/udp
 
-CMD ["radiusd", "-${radiusd_options}", "{$radiusd_logfile}"]
+CMD ["radiusd", "-$RADIUSD_OPTIONS", "$RADIUSD_LOGFILE"]
