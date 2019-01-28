@@ -1,3 +1,6 @@
+ARG radiusd_options
+ARG radiusd_logfile
+
 FROM chrohrer/freeradius:0.4
 
 LABEL maintainer="chris.rohrer@ubuntunet.net"
@@ -17,4 +20,4 @@ COPY Radius/mods-enabled/f_ticks /etc/raddb/mods-enabled/f_ticks
 
 EXPOSE 1812/udp 1813/udp
 
-CMD ["radiusd", "-sfxxl", "stdout"]
+CMD ["radiusd", "-$radiusd_options", "$radiusd_logfile"]
