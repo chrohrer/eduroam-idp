@@ -1,9 +1,9 @@
+FROM chrohrer/freeradius:0.4
+
 ARG RADIUSD_OPTIONS=sfxxl
 ARG RADIUSD_LOGFILE=stdout
 ENV RADIUSD_OPTIONS ${RADIUSD_OPTIONS}
 ENV RADIUSD_LOGFILE ${RADIUSD_LOGFILE}
-
-FROM chrohrer/freeradius:0.4
 
 LABEL maintainer="chris.rohrer@ubuntunet.net"
 
