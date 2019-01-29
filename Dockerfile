@@ -22,4 +22,5 @@ COPY Radius/mods-enabled/f_ticks /etc/raddb/mods-enabled/f_ticks
 
 EXPOSE 1812/udp 1813/udp
 
-CMD ["radiusd", "-$RADIUSD_OPTIONS", "$RADIUSD_LOGFILE"]
+# CMD ["radiusd", "-${RADIUSD_OPTIONS}", "${RADIUSD_LOGFILE}"]
+CMD radiusd -${RADIUSD_OPTIONS} -l ${RADIUSD_LOGFILE}
