@@ -1,4 +1,5 @@
-FROM chrohrer/freeradius:0.4
+FROM freeradius/freeradius-server:3.0.19-alpine
+# FROM chrohrer/freeradius:0.4
 
 ARG RADIUSD_OPTIONS=sfxxl
 ARG RADIUSD_LOGFILE=stdout
@@ -13,8 +14,8 @@ RUN apk update && apk upgrade && \
     apk add --update openssl freeradius-eap freeradius-ldap freeradius-postgresql freeradius-mysql make && \
     rm /var/cache/apk/*
 
-RUN /etc/raddb/certs/bootstrap && \
-    chmod -R +r /etc/raddb/certs
+# RUN /etc/raddb/certs/bootstrap && \
+#     chmod -R +r /etc/raddb/certs
 
 COPY Radius/radiusd.conf /etc/raddb/radiusd.conf
 COPY Radius/mods-config/attr_filter/pre-proxy /etc/raddb/mods-config/attr_filter/pre-proxy
