@@ -1,4 +1,10 @@
-FROM chrohrer/freeradius:0.4
+#FROM freeradius/freeradius-server:3.0.19-alpine
+FROM chrohrer/freeradius:0.5
+
+ARG RADIUSD_OPTIONS=sfxxl
+ARG RADIUSD_LOGFILE=stdout
+ENV RADIUSD_OPTIONS ${RADIUSD_OPTIONS}
+ENV RADIUSD_LOGFILE ${RADIUSD_LOGFILE}
 
 LABEL maintainer="chris.rohrer@ubuntunet.net"
 
@@ -17,4 +23,5 @@ COPY Radius/mods-enabled/f_ticks /etc/raddb/mods-enabled/f_ticks
 
 EXPOSE 1812/udp 1813/udp
 
-CMD ["radiusd", "-sfxxl", "stdout"]
+# CMD ["radiusd", "-${RADIUSD_OPTIONS}", "${RADIUSD_LOGFILE}"]
+CMD radiusd -${RADIUSD_OPTIONS} -l ${RADIUSD_LOGFILE}
